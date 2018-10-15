@@ -24,7 +24,21 @@ int adjancent(Graph* graph, int v1, int v2){
   return graph.matrix[v1*graph.sizemax+v2];
 }
 
+void printGraph(Graph graph){
+  for(int i;i<sizemax; i++){
+    for(int j=0; j<sizemax; j++){
+      printf("%d ", graph.matrix[i][j]);
+    }
+    pritnf("\n");
+  }
+}
+
 int getAdjacentVertices(Graph* graph, int vertex, int* output){
+
+
+}
+
+void dropGraph(Graph* graph){
 
 
 }

@@ -12,6 +12,7 @@ void addEdge(Graph* graph, int v1, int v2);
 int adjancent(Graph* graph, int v1, int v2);
 int getAdjacentVertices(Graph* graph, int vertex, int* output);
 //return the number of adjacent vertices
+void printGraph(Graph graph);
 void dropGraph(Graph* graph);
 
 #endif
