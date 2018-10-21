@@ -34,13 +34,13 @@ int adjacent(Graph graph, int v1, int v2){
 
 int getAdjacentVertices (Graph graph, int v, int* output){
   JRB node;
-  int i=0;
+  int total=0;
   node = jrb_find_int(graph, v);
   tree = (JRB)jval_v(node->val);
-  total = 0;   
   jrb_traverse(node, tree){
-    output[i++] = jval_i(node->key);
+    output[total++] = jval_i(node->key);
   }
+  return total;
 }
 
 void printGraph(Graph graph){
