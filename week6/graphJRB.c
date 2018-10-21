@@ -45,9 +45,11 @@ int getAdjacentVertices (Graph graph, int v, int* output){
 
 void printGraph(Graph graph){
   JRB tmp, nodetmp;
+  JRB tree;
   jrb_traverse(tmp, graph){
     printf("%d: ", jval_i(tmp->key));
-    jrb_traverse(nodetmp, tmp->val){
+    tree = (JRB)jval_v(tmp->val);
+    jrb_traverse(nodetmp, tree){
       printf("%d ", jval_i(nodetmp->key));
     }
     printf("\n");
