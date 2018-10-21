@@ -50,6 +50,7 @@ void printGraph(Graph graph){
     jrb_traverse(nodetmp, tmp->val){
       printf("%d ", jval_i(nodetmp->key));
     }
+    printf("\n");
   }
 }
 
