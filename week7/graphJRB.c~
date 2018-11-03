@@ -76,3 +76,8 @@ void dropGraph(Graph graph){
   }
   jrb_free_tree(graph);
 }
+
+void BFS(Graph graph, int start, int stop, void(*func)(int)){
+  
+
+}

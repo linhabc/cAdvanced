@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "graphJRB.h"
+#include "dllist.h"
+#define MAX 50
 
 Graph createGraph(){
   return make_jrb();
@@ -75,4 +77,31 @@ void dropGraph(Graph graph){
     jrb_free_tree(tmpNode);
   }
   jrb_free_tree(graph);
+}
+
+void BFS(Graph graph, int start, int stop, void(*func)(int)){
+  JRB visited;
+  Dllist queue, node;
+  int n, output[MAX], i, u, v;
+
+  //intialize the queue
+  queue = new_dllist();
+  dll_append(queue, new_jval_i(start));
+  visited = make_jrb();
+
+  while( !dll_empty(queue) ){
+    node = dll_first(queue);                //take one vertex from queue 
+    u = jval_i(node->val);
+    dll_delete_node(node);
+
+    if(jrb_find_int(visited, u) == NULL){   //not yet visited
+      func(u);                              //visit that vertex
+      jrb_insert_int(visited, u, new_jval_i(1));
+
+      if(u == stop) break;                  //stop if visit the destination
+
+
+    }
+
+
 }
