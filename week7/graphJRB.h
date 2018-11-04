@@ -13,5 +13,6 @@ int getAdjacentVertices (Graph graph, int v, int* output);
 void printGraph();
 void dropGraph(Graph graph);
 void BFS(Graph graph, int start, int stop, void(*func)(int));
+void DFS(Graph graph, int start, int stop, void(*func)(int));
 
 #endif

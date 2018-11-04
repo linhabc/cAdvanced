@@ -30,7 +30,7 @@ void addEdge(Graph graph, int v1, int v2){
   jrb_insert_int(tree, v1, new_jval_i(1));
 }
 
-int adjacent(Graph graph, int v1, int v2){
+int adjacent(Graph graph, int v1, int v2){  //rewrite
   JRB node, adjNode;
   node = jrb_find_int(graph, v1);
   if(node != NULL){
@@ -42,12 +42,12 @@ int adjacent(Graph graph, int v1, int v2){
   return 0;
 }
 
-int getAdjacentVertices (Graph graph, int v, int* output){
+int getAdjacentVertices (Graph graph, int v, int* output){  //rewrite
   JRB node, tree, nodeTree;
   int total=0;
   tree = jrb_find_int(graph, v);
   if(tree == NULL){
-    return NULL;
+    return 0;
   }
   
   nodeTree = (JRB)jval_v(tree->val);
@@ -100,8 +100,69 @@ void BFS(Graph graph, int start, int stop, void(*func)(int)){
 
       if(u == stop) break;                  //stop if visit the destination
 
-
+      //add unvisited neighbors to the queue
+      n = getAdjacentVertices(graph, u, output);
+      
+      for(i=0; i<n; i++){
+	v = output[i];
+	if(jrb_find_int(visited, v) == NULL)
+	  dll_append(queue, new_jval_i(v));
+      }
     }
-
-
+  }
+  
+  jrb_free_tree(visited);
 }
+
+
+void DFS(Graph graph, int start, int stop, void(*func)(int)){
+  JRB visited;
+  Dllist stack, node;
+  int n, output[MAX], i, u, v;
+
+  //intialize the stack
+  stack = new_dllist();
+  dll_prepend(stack, new_jval_i(start));
+  visited = make_jrb();
+
+  while( !dll_empty(stack) ){
+    node = dll_last(stack);                       //take one vertex from stack 
+    u = jval_i(node->val);
+    dll_delete_node(node);
+
+    if(jrb_find_int(visited, u) == NULL){         //not yet visited
+      func(u);                                    //visit that vertex with func(u)
+      jrb_insert_int(visited, u, new_jval_i(1));
+
+      if(u == stop) break;                        //stop if visit the destination
+
+      //add unvisited neighbors to the stack
+      n = getAdjacentVertices(graph, u, output);
+      
+      for(i=0; i<n; i++){
+	v = output[i];
+	if(jrb_find_int(visited, v) == NULL)
+	  dll_prepend(stack, new_jval_i(v));
+      }
+    }
+  }
+  
+  jrb_free_tree(visited);
+}
+
+/*
+int getAdjacentVertices (Graph graph, int v, int* output){
+  JRB node, tree, nodeTree;
+  int total=0;
+  tree = jrb_find_int(graph, v);
+  if(tree == NULL){
+    return 0;
+  }
+  
+  nodeTree = (JRB)jval_v(tree->val);
+  jrb_traverse(node, nodeTree){
+    output[total++] = jval_i(node->key);
+  }
+  return total;
+}
+*/
