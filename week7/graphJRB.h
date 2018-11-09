@@ -2,7 +2,7 @@
 #define	_GRAPHJRB_H_
 
 #include "jrb.h"
-#include "jval.h"
+#include "dllist.h"
 
 typedef JRB Graph;
 

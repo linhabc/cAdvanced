@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include "graphJRB.h"
 
-//void printVertex(int v) { printf("%4d", v); }
+void printVertex(int v) {
+  printf("%4d", v);
+}
 
 int main(){
   int total, adj[10];
@@ -15,20 +17,24 @@ int main(){
   addEdge(graph, 3, 1);
 
   printGraph(graph);
-  dropGraph(graph);
   
-  //printf("%d \n", adjacent(graph, 1, 2));
 
-  /*
+  printf("%d \n", adjacent(graph, 1, 2));
+  printf("%d \n", adjacent(graph, 3, 2));
+  printf("%d \n", adjacent(graph, 1, 5));
+
+
   total = getAdjacentVertices(graph, 1, adj);
   printf("total: %d\n", total);
   printf("Adjacent of v1: ");
   for(int i=0; i<total; i++){
     printf("%d ", adj[i]);
   }
+  printf("\nBFS\n");
+  BFS(graph, 1, -1, printVertex);
+
+  dropGraph(graph);
   printf("\n");
-  */
-  // BFS(graph, 1, -1, printVertex);
   return 0;
 }
 
