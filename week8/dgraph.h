@@ -7,7 +7,7 @@
 typedef struct {
 	JRB vertices;
 	JRB edges;
-}Graph;
+} Graph;
 
 Graph createGraph();
 
@@ -20,7 +20,10 @@ int outdegree(Graph graph, int v, int* output);
 
 void BFS(Graph graph, int start, int stop, void (*func)(int));
 void DFS(Graph graph, int start, int stop, void (*func)(int));
+
 int DAG(Graph graph);
+int topologicalSort(Graph graph, int *output);
+
 void dropGraph(Graph graph);
 
 #endif
