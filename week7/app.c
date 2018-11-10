@@ -2,7 +2,7 @@
 #include "graphJRB.h"
 
 void printVertex(int v) {
-  printf("%4d", v);
+  printf("%-4d", v);
 }
 
 int main(){
@@ -32,6 +32,10 @@ int main(){
   }
   printf("\nBFS\n");
   BFS(graph, 1, -1, printVertex);
+  printf("\n");
+
+  printf("\nDFS\n");
+  DFS(graph, 1, -1, printVertex);
 
   dropGraph(graph);
   printf("\n");

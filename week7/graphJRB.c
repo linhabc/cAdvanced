@@ -76,14 +76,14 @@ void dropGraph(Graph graph){
   jrb_free_tree(graph);
 }
 
-void BFS(Graph graph, int start, int stop, void(*func)(int)){
+void DFS(Graph graph, int start, int stop, void(*func)(int)){
   JRB visited;
   Dllist node ,stack;
   int n, output[100], i,u,v;
 
   //Initialize the queue
   stack = new_dllist();
-  dll_append(stack, new_jval_i(start));
+  dll_prepend(stack, new_jval_i(start));
   visited = make_jrb();
 
   while( !dll_empty(stack)) {
@@ -111,7 +111,7 @@ void BFS(Graph graph, int start, int stop, void(*func)(int)){
 }
 
 
-void DFS(Graph graph, int start, int stop, void(*func)(int)){
+void BFS(Graph graph, int start, int stop, void(*func)(int)){
   JRB visited;
   Dllist node ,queue;
   int n, output[100], i,u,v;
